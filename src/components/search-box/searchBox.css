@@ -1,0 +1,16 @@
+.search-box {
+    width: 50%;
+    padding: 0px 8px;
+    padding-right: 32px;
+}
+.submit-search {
+    border-width: 0;
+    background-color: transparent;
+    margin-left: -32px;
+}
+.submit-search:focus{
+    outline: none;
+}
+.submit-search:active{
+    color: #0070ff;
+}
