@@ -1,5 +1,45 @@
-.book-detail-wrapper{
-    max-height: 380px;
-    min-height: 380px;
-    background-color: #eeeeee;
+.book-detail-wrapper {
+  background-color: #eeeeee;
+}
+.book-title-author-details {
+  float: left;
+  padding: 8px;
+  width: 100%;
+}
+.image-wrapper {
+  width: 145px;
+  height: 220px;
+  float: left;
+}
+.image-wrapper img {
+  width: 100%;
+}
+.book-title-author {
+  float: left;
+  width: calc(100% - 150px);
+  height: 220px;
+  padding: 10px;
+}
+.book-title {
+  font-size: 35px;
+  font-weight: bold;
+}
+.series {
+  font-size: 28px;
+}
+.author-names {
+  font-size: 30px;
+}
+.various-ratings {
+  font-size: 23px;
+  margin-top: 26px;
+}
+.book-descriptions {
+  float: left;
+  width: 100%;
+  padding: 8px;
+}
+.book-description-p {
+  font-size: 20px;
+  line-height: 30px;
 }
