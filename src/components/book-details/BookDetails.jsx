@@ -2,14 +2,22 @@ import React, { Component } from "react";
 import "./BookDetails.css";
 
 class BookDetails extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            savedHeight: null
+        };
+    }
   formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+
   render() {
     return (
       <div
         className="book-detail-wrapper"
         style={{ height: this.props.calculatedHeights }}
+        ref={wrapper => (this.wrapper = wrapper)}
       >
         {this.props.searchResults.length === 0 ? (
           ""
@@ -59,9 +67,11 @@ class BookDetails extends Component {
                 </p>
               </div>
             </div>
-            <div className="book-descriptions" style={{ height: this.props.calculatedHeights - 236 }}>
-            {(this.props.bookDetails.description)?this.props.bookDetails.description.replace(/<br \/>/g, "\n"):'No description available'}
-            </div>
+            {
+                (this.props.bookDetails.description)?<div className="book-descriptions" style={{ height: this.wrapper.clientHeight - 236 }} dangerouslySetInnerHTML={{ __html: this.props.bookDetails.description }}></div>
+                :
+                <div className="book-descriptions" style={{ height: this.wrapper.clientHeight - 236 }}>No description available</div>
+            }
           </div>
         )}
       </div>
