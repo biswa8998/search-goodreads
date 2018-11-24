@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./BookDetails.css";
 
 class BookDetails extends Component {
+  formatNumber(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   render() {
     return (
       <div
@@ -11,7 +14,7 @@ class BookDetails extends Component {
         {this.props.searchResults.length === 0 ? (
           ""
         ) : this.props.searchingDetail ? (
-          <h2 className="text-center">Searching...</h2>
+          <h2 className="text-center">Loading...</h2>
         ) : this.props.bookDetails === null ? (
           ""
         ) : (
@@ -34,25 +37,30 @@ class BookDetails extends Component {
                     : this.props.bookDetails.title}
                 </h3>
                 <p className="series">
-                  {this.props.bookDetails.title.indexOf("(") !== -1
-                    ? this.props.bookDetails.title.substring(
-                        this.props.bookDetails.title.indexOf("(") + 1,
-                        this.props.bookDetails.title.indexOf(")")
-                      )
-                    : ""}
-                </p>
-                <p className="author-names">
-                  {typeof this.props.bookDetails.authors.author instanceof Array
-                    ? this.props.bookDetails.authors.author.map(ele => {
-                        return ele.name + "<br/>";
+                    {this.props.bookDetails.title.indexOf("(") !== -1
+                      ? this.props.bookDetails.title.substring(
+                          this.props.bookDetails.title.indexOf("(") + 1,
+                          this.props.bookDetails.title.indexOf(")")
+                        )
+                      : '\u00A0'}
+                  </p>
+                <p className="author-names"><small>By: </small>
+                  {this.props.bookDetails.authors.author instanceof Array
+                    ? this.props.bookDetails.authors.author.map((ele, idx) => {
+                        return (idx < this.props.bookDetails.authors.author.length-1)?`${ele.name}, `: ele.name;
                       })
                     : this.props.bookDetails.authors.author.name}
                 </p>
-                <p className="various-ratings">Ratings and All</p>
+                <p className="book-pages">{(this.props.bookDetails.num_pages)?`${this.props.bookDetails.num_pages}  Pages`:'No Page Information'}</p>
+                <p className="various-ratings">
+                    <span className="average-rating">{(this.props.bookDetails.average_rating)?`Avg. Rating: ${this.props.bookDetails.average_rating}`:'No Average Rating'}</span>
+                    <span className="book-ratings">{(this.props.bookDetails.work.ratings_count.content)?`Ratings: ${this.formatNumber(this.props.bookDetails.work.ratings_count.content)}`:'No Ratings'}</span>
+                    <span className="book-reviews">{(this.props.bookDetails.work.text_reviews_count.content)?`Ratings: ${this.formatNumber(this.props.bookDetails.work.text_reviews_count.content)}`:'No Reviews'}</span>
+                </p>
               </div>
             </div>
-            <div className="book descriptions">
-              <p className="book-description-p" />
+            <div className="book-descriptions" style={{ height: this.props.calculatedHeights - 236 }}>
+            {(this.props.bookDetails.description)?this.props.bookDetails.description.replace(/<br \/>/g, "\n"):'No description available'}
             </div>
           </div>
         )}

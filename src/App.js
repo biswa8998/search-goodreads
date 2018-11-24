@@ -82,7 +82,7 @@ class App extends Component {
             </div>
             <div className="col-sm-8" style={{ paddingRight: "0px" }}>
               <h3 className="text-center">
-                <u>Book Detail</u>
+                <u>Book's Detail</u>
               </h3>
               <BookDetails
                 bookDetails={this.state.bookDetails}

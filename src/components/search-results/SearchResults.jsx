@@ -26,7 +26,7 @@ class SearchResults extends Component {
       .get(proxifyUrlIsbn)
       .then(response => {
         this.props.isSearchingDetail(false);
-        console.log(response.data.query.results.GoodreadsResponse.book);
+        console.log(response.data.query.results.GoodreadsResponse);
         let bookDetail = response.data.query.results.GoodreadsResponse.book;
         if (bookDetail === undefined) {
           this.props.setBookDetails(null);

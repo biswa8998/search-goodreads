@@ -5,6 +5,7 @@
   float: left;
   padding: 8px;
   width: 100%;
+  height: 236px;
 }
 .image-wrapper {
   width: 145px;
@@ -16,13 +17,18 @@
 }
 .book-title-author {
   float: left;
-  width: calc(100% - 150px);
+  width: calc(100% - 160px);
   height: 220px;
   padding: 10px;
+  border-left: 3px solid #ab9a9a;
+  margin-left: 10px;
 }
 .book-title {
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .series {
   font-size: 28px;
@@ -31,15 +37,17 @@
   font-size: 30px;
 }
 .various-ratings {
-  font-size: 23px;
-  margin-top: 26px;
+  font-size: 18px;
+  margin-top: 14px;
+}
+.various-ratings span {
+  display: block;
+  float: left;
+  margin-right: 10px;
 }
 .book-descriptions {
   float: left;
   width: 100%;
   padding: 8px;
-}
-.book-description-p {
-  font-size: 20px;
-  line-height: 30px;
+  overflow-y: auto;
 }
