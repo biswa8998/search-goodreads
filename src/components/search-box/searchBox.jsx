@@ -38,7 +38,7 @@ class SearchBox extends Component {
         callback(response);
       })
       .catch(e => {
-        console.log(e);
+        null;
       });
   }
 

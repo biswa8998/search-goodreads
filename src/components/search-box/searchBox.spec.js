@@ -15,7 +15,6 @@ import { expect } from "../../chai";
     feature file
 */
 import SearchBox from "./searchBox";
-console.log("\n==============ooooooo   START   ooooooo==============\n");
 describe("SearchBox", () => {
   let wrapper;
   const isSearching = jest.fn();
@@ -75,15 +74,25 @@ describe("SearchBox", () => {
   });
 
   describe("when user enters search key", () => {
-    const wrapper = mount(<SearchBox />);
+    const spy = sinon.spy(SearchBox.prototype, "runAxios");
+    const isSearching = jest.fn();
+    const wrapper = mount(<SearchBox isSearching={isSearching} />);
     const input = wrapper.find("#search-key");
     const searchIcon = wrapper.find("#click-to-search");
-    const runAxios = sinon.spy();
+    // Search term is "dan brown"
     input.instance().value = "dan brown";
     input.simulate("change");
     searchIcon.simulate("click");
-    it("and presses Enter key or Search Icon, the search api gets called", () => {
-      expect(runAxios).to.have.property(1);
+    it("the search API of Goodreads is called", () => {
+      sinon.assert.calledOnce(spy);
+    });
+    // Search term is not changed, it is still "dan brown", so the API is not called
+    input.instance().value = "dan brown";
+    input.simulate("change");
+    searchIcon.simulate("click");
+    it("the search API of Goodreads is not called, if the search terms are not changed", () => {
+      // assertion of function called only once as search key is not changed
+      sinon.assert.calledOnce(spy);
     });
   });
 });
