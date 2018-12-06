@@ -1,4 +1,4 @@
-This project uses (GoodReads API)[https://www.goodreads.com/api] to search for Books using Book Title or Author Name.
+This project uses [GoodReads API](https://www.goodreads.com/api) to search for Books using Book Title or Author Name.
 
 ## How this application works
 
