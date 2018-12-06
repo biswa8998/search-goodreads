@@ -9,7 +9,7 @@ configure({ adapter: new Adapter() });
 /*
     internal files
 */
-import { expect } from "../../chai";
+import { expect } from "../../test-setup";
 
 /*
     feature file

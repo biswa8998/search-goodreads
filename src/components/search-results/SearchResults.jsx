@@ -8,9 +8,6 @@ import ENV from "../../constants";
 class SearchResults extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      lastClicked: null
-    };
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -34,9 +31,7 @@ class SearchResults extends Component {
           this.props.setBookDetails(bookDetail);
         }
       })
-      .catch(e => {
-        console.log(e);
-      });
+      .catch(e => {});
   }
 
   render() {
@@ -48,7 +43,9 @@ class SearchResults extends Component {
         {this.props.searchResults.length === 0 && !this.props.searchingList ? (
           ""
         ) : this.props.searchingList ? (
-          <h2 className="text-center">Searching...</h2>
+          <h2 className="text-center" id="msg-searching">
+            Searching...
+          </h2>
         ) : (
           <ul className="search-result-ul">
             {this.props.searchResults.map((ele, idx) => {

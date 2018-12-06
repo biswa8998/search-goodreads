@@ -37,9 +37,7 @@ class SearchBox extends Component {
       .then(response => {
         callback(response);
       })
-      .catch(e => {
-        null;
-      });
+      .catch(e => {});
   }
 
   submitSearch() {
